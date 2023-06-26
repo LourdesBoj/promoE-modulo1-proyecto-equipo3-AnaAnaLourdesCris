@@ -1,17 +1,50 @@
-CREATE SCHEMA `adalab` ;
+CREATE SCHEMA `adalab`;
+
+USE `adalab`;
+
+-- Vamos a crear la tabla SQL
+CREATE TABLE `SQL`
+(index_sql INT NOT NULL,
+q10_part_1 VARCHAR(255),
+q10_part_2 VARCHAR(255),
+q10_part_3 VARCHAR(255),
+q10_part_4 VARCHAR(255),
+q10_part_5 VARCHAR(255),
+q10_part_6 VARCHAR(255),
+q10_part_7 VARCHAR(255),
+q10_part_8 VARCHAR(255),
+q10_part_9 VARCHAR(255),
+q10_part_10 VARCHAR(255),
+q10_part_11 VARCHAR(255),
+q10_part_12 VARCHAR(255),
+q10_part_13 VARCHAR(255),
+q10_part_14 VARCHAR(255),
+q10_part_15  VARCHAR(255),
+q10_part_16 VARCHAR(255),
+q10_other VARCHAR(255),
+d482xta VARCHAR(255),
+PRIMARY KEY (`index_sql`)
+);
 
 -- Vamos a crear la tabla xml
 CREATE TABLE `xml`
-(`index_xml` VARCHAR(30), 
+(`index_xml` INT NOT NULL, 
 `time` VARCHAR(30), 
 `age` VARCHAR(30), 
 `gender` VARCHAR(30),
-`index_sql` VARCHAR(30));
+`index_sql` INT,
+PRIMARY KEY (`index_xml`),
+CONSTRAINT `fk_xml_sql`
+FOREIGN KEY (`index_sql`)
+REFERENCES `SQL`(`index_sql`)
+	ON DELETE RESTRICT
+	ON UPDATE CASCADE
+);
 
 -- Vamos a crear la tabla txt
 CREATE TABLE `txt`
-(index_txt VARCHAR(30),
-index_sql VARCHAR(30), 
+(index_txt INT NOT NULL,
+index_sql INT, 
 Q3 VARCHAR(255), 
 Q4 VARCHAR(255),
 Q5 VARCHAR(255),
@@ -37,29 +70,17 @@ Q32 VARCHAR(255),
 Q33 VARCHAR(255),
 Q34 VARCHAR(255),
 Q35 VARCHAR(255),
-Q41 VARCHAR(255));
+Q41 VARCHAR(255),
+PRIMARY KEY (`index_txt`),
+CONSTRAINT `fk_txt_sql`
+FOREIGN KEY (`index_sql`)
+REFERENCES `SQL`(`index_sql`)
+	ON DELETE RESTRICT
+	ON UPDATE CASCADE
+);
 
 
-CREATE TABLE `SQL`
-(index_sql VARCHAR(255),
-q10_part_1 VARCHAR(255),
-q10_part_2 VARCHAR(255),
-q10_part_3 VARCHAR(255),
-q10_part_4 VARCHAR(255),
-q10_part_5 VARCHAR(255),
-q10_part_6 VARCHAR(255),
-q10_part_7 VARCHAR(255),
-q10_part_8 VARCHAR(255),
-q10_part_9 VARCHAR(255),
-q10_part_10 VARCHAR(255),
-q10_part_11 VARCHAR(255),
-q10_part_12 VARCHAR(255),
-q10_part_13 VARCHAR(255),
-q10_part_14 VARCHAR(255),
-q10_part_15  VARCHAR(255),
-q10_part_16 VARCHAR(255),
-q10_other VARCHAR(255),
-d482xta VARCHAR(255));
+
 
 
 
